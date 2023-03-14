@@ -6,95 +6,76 @@ presentation:
 <!-- .slide: data-background="#123456" class="overview-slide" -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides* mit dem IG Publisher
 ***
-###Andreas Schuler
+###Andreas Schuler & Oliver Krauss
 ####*14.03.2023*
 ###*HL7 Austria Jahrestagung 2023*
 
-<!-- .slide -->
-<!-- .slide -->
-# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Kurzfassung
-***
-Das vorliegende Tutorial beschreibt die Verwendung und den Einsatz des IG Publisher als Grundlage für die Erstellung eines FHIR&reg; Implementierungsleitfadens Ausgehend von einer detaillierten Beschreibung der benötigten Ordnerstruktur, wird anhand eines durchgängigen Beispiels die verschiedenen Features und Möglichkeiten hinsichtlich der Erstellungen eines FHIR&reg; Implementierungsleitfadens erläutert.
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Vorbedingungen
 ***
-Damit das Tutorial und die nachfolgenden Beispiele am eigenen Rechner nachvollzogen werden können, ist die Installation einer Reihe an Werkzeugen und Tools erforderlich, die vom *IG Publisher* implizit verwendet werden. Darüber hinaus erfolgt die notwendige FHIR&reg; Profilierung unter Verwendung von FHIR&reg; Shorthand.
+Im Rahmen des Workshops werden folgende Werkzeuge eingesetzt
+- *IG Publisher* &ndash; https://github.com/HL7/fhir-ig-publisher
+- *FHIR&reg; Shorthand.* &ndash; https://github.com/FHIR/sushi
+
+Alle Unterlagen/Skripte/etc. finden sich unter 
+### https://github.com/HL7Austria/workshop_ig_infrastructure
+
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Vorbedingungen
 ***
 ### Frameworks
-
-- **Java:** Für das Ausführen des *IG Publisher* und damit das Erstellen eines
-Implementierungsleitfadens ist eine Java-Installation am Rechner erforderlich
-    - eine aktuelle Java Version kann unter https://www.java.com/de/download/manual.jsp bezogen werden.
-- **Jekyll:** Das Jekyll-Framework wird von *IG Publisher* verwendet um die einzelnen Teile
-des Implementierungsleitfadens in eine Webseite und damit den gerenderten Implementierungsleitfaden zu überführen.
-- **Node Package Manager:** Der Node Package Manager wird verwendet um den IG Publisher zu Paktieren für die darauffolgende Publikation in der HL7 FHIR&reg; Registry.
-    - https://www.npmjs.com/get-npm
-- **Sushi:** Sushi ist streng genommen ein Transpiler, der auf Grundlage einer domänenspezifischen Sprache (FHIR&reg; Shorthand) eine effiziente Möglichkeit für das Erstellen von FHIR&reg; Implementation Guides darstellt. Die Installation von Sushi erfolgt via *Node Package Manager*. Öffnen Sie dazu ein Konsolenfenster und tippen sie nachfolgendes Kommando ein:
-    ```bash
-    npm install -g fsh-sushi
-    ```
-    Als Vorbedingung für die Installation muss der *Node Package Manager* installiert sein. Weitere Details zur Installation von Sushi finden sich unter 
-    - https://github.com/FHIR/sushi
+- **Java:** Für das Ausführen des *IG Publisher* und damit das Erstellen eines Implementierungsleitfadens ist eine Java-Installation am Rechner erforderlich.
+- **Jekyll:** Das Jekyll-Framework wird von *IG Publisher* verwendet um die einzelnen Teile des Implementierungsleitfadens in eine Webseite und damit den gerenderten Implementierungsleitfaden zu überführen.
+- **Node Package Manager:** wird für die Installation von *Sushi* benötigt.
+- **Sushi:** Sushi ist streng genommen ein Transpiler, der auf Grundlage einer domänenspezifischen Sprache (FHIR&reg; Shorthand) eine effiziente Möglichkeit für das Erstellen von FHIR&reg; Implementation Guides darstellt.
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Vorbedingungen
 ***
 ### Werkzeuge
-Für das Tutorial werden überdies folgende Tools zur Erstellung des Implementierungsleitfadens
-verwendet:
-- Visual Studio Code: https://code.visualstudio.com
-- Visual Studio Code FHIR&reg; Tools: https://marketplace.visualstudio.com/items?itemName=Yannick-Lagger.vscode-fhir-tools
+Für das Tutorial werden überdies folgende Tools zur Erstellung des  Implementierungsleitfadens verwendet:
+- Visual Studio Code &ndash; https://code.visualstudio.com
+- Visual Studio Code FHIR&reg; Tools
 - Visual Studio Code XML Language Server
 - Visual Studio Code FHIR&reg; Shorthand
-FHIR&reg; Tools, der XML-Language Server als auch FHIR&reg; Shorthand können komfortabel über den Visual Studio Code Plugin Mechanismus installiert werden.
 
 > <span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Grundsätzlich kann ein beliebiger Editor verwendet werden. Visual Studio Code bietet allerdings mit entsprechenden Plugins hilfreiche Werkzeuge, die bei der Erstellung von Implementierungsleitfäden unterstützen können.
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
 Als Grundlage für das Tutorial fungiert der ELGA Implementierungsleitfaden zu e-Medikation.
-Schrittweise wird anhand dieses Leitfadens die Erstellung eines FHIR&reg;-Implementierungsleitfadens demonstriert.
-Ausgehend von den Minimalanforderungen eines FHIR&reg;-Implementierungsleitfadens arbeiten wir uns Schrittweise
-voran und demonstrieren so das Erstellen sowohl narrativen Inhalts als auch das Einbinden spezifizierter
-Profile, Ressourcen und Vokabular. Zudem werden anhand des Tutorials die Voraussetzungen für den Einsatz der von HL7 Austria betriebenen FHIR&reg; IG Infrastructure veranschaulicht. 
+- Erstellung eines FHIR&reg;-Implementierungsleitfadens
+- Ausgehend von Minimalanforderungen eines FHIR&reg;-Implementierungsleitfadens schrittweises erstellen von 
+  - narrativen Inhalten 
+  - und einbinden spezifizierter Profile, Ressourcen und Vokabular. 
+- Voraussetzungen für Einsatz der HL7 Austria FHIR&reg; IG Infrastructure 
 
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Das vorliegende Tutorial erhebt keinerleit Anspruch auf Vollständigkeit bei der Umsetzung des ELGA Implementierungsleitfadens e-Medikation. Vielmehr dient das Beispiel dazu, die Verwendung und das Zusammenspiel der verschiedenen Techniken und Ansätze für das Erstellen von Implementierungsleitfäden zu demonstrieren.
+<span style="border-radius: 3px;background-color:red; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">!</span> Das vorliegende Tutorial erhebt keinerlei Anspruch auf Vollständigkeit bei der Umsetzung des ELGA-Implementierungsleitfadens e-Medikation. Vielmehr dient das Beispiel dazu, die Verwendung und das Zusammenspiel der verschiedenen Techniken und Ansätze für das Erstellen von Implementierungsleitfäden zu demonstrieren.
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
-### Ordnerstruktur
-- Der *IG Publisher* setzt für 
-das Erzeugen eines FHIR&reg; Implementierungsleitfadens eine bestimmte Ordnerstruktur voraus. Glücklicherweise berücksichtigen die Entwickler von Sushi bei der Erstellung eines Sushi-Projektes diese Voraussetzungen. Damit kann über eine Konsole mittels dem nachfolgenden Befehl ein solches Sushi-Projekt erzeugt werden, welches zeitgleich die notwendigen Voraussetzungen für eine nachgelagerte Nutzung des *IG Publisher* erlaubt. 
-
+### Projektstruktur
+Der *IG Publisher* setzt für das Erzeugen eines FHIR&reg; Implementierungsleitfadens eine bestimmte Ordnerstruktur voraus
+- Intialisierung einer gültigen Struktur über *Sushi*
 ```bash
 sushi -i  # alternativ sushi --init
 ```
-<!-- .slide -->
-# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
-***
-Nachfolgende Abbildung veranschaulicht dieses Zusamenspiel der eingesetzen Tools noch einmal im Detail.
-
-<span style="border-radius: 3px;background-color:#FF0000; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">TODO</span> Abbildung Zusammenspiel SUSHI, IG Publisher.
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
-
-Mit Ausführung obigen Kommandos wird ein Sushi Projekt erstellt, dabei werden über die Konsole wesentliche Parameter des zu erstellenden *Implementation Guide* abgefragt. Es sind grundsätzlich beliebige Parameterwerte erlaubt, für das vorliegende Beispiel verwenden wir nachfolgende Angaben:
+### Projektstruktur
+Initialierung eines *Sushi*-Projektes, über Konsole werde wesentliche Parameter des zu erstellenden *Implementation Guide* abgefragt. 
 
 | Parameter  |  Eingabe  |
 |---|---|
@@ -109,9 +90,10 @@ Mit Ausführung obigen Kommandos wird ein Sushi Projekt erstellt, dabei werden �
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
-- Nachdem die entsprechenden Eingaben getätigt wurden, erzeugt Sushi die benötigte Ordnerstruktur gemäß nachfolgender Auflistung.
+### Projektstruktur
+Ordnerstruktur nach Intialisierung eines *Sushi*-Projektes
 
 ```bash
 /ig-eMedication-at
@@ -125,42 +107,35 @@ Mit Ausführung obigen Kommandos wird ein Sushi Projekt erstellt, dabei werden �
     ├── sushi-config.yaml         # configuration for suhsi and IG properties
 ```
 
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Der *IG Publisher* kann auch gänzlich ohne den Einsatz von FHIR&reg; Shorthand und dem damit verbundenen Sushi Werkzeug verwendet werden. In solch einem Szenario erfolgen die notwendigen Profilierungen von FHIR&reg; direkt unter Definition entsprechender FHIR&reg; Ressourcen (bspw. `StructureDefinition`) via XML- oder JSON-Repräsentation. 
+<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Der *IG Publisher* kann auch gänzlich ohne den Einsatz von FHIR&reg; Shorthand und dem damit verbundenen _Sushi_-Werkzeug verwendet werden. In solch einem Szenario erfolgen die notwendigen Profilierungen von FHIR&reg; direkt unter Definition entsprechender FHIR&reg; Ressourcen (bspw. `StructureDefinition`) via XML- oder JSON-Repräsentation. 
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
-- Der *IG Publisher* wird in Folge in entsprechendem Verzeichnis aufgerufen. Sofern der *IG Publisher* noch nicht 
-ausgeführt wurde, ist das Skript `_updatePublisher.[bat|sh]` im Vorhinhein auszuführen. Sodann kann über das Skript `_genonce.[bat|sh]` der Implementierungsleitfaden erstellt werden.
+### Projektstruktur - IG bauen und paketieren
+Das Skript `_updatePublisher.[bat|sh]` im Vorhinhein auszuführen. Sodann kann über das Skript `_genonce.[bat|sh]` der Implementierungsleitfaden erstellt werden.
 
-<span style="border-radius: 3px;background-color:red; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">!</span> Achtung, *IG Publisher* erfordert die Installation von Java, NPM und Jekyll, sofern eine der angeführten Abhängigkeiten nicht erfüllt ist, kann kein Implementierungsleitfaden erzeugt werden. Darüber hinaus erfordert die Erstellung eines Implementierungsleitfadens eine aktive Internetverbindung.
 
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Alternativ zur bereitgestellten Verzeichnisstruktur kann als Grundlage
-für die Erstellung das offizielle Beispiel Projekt unter https://github.com/FHIR/sample-ig verwendet werden.
+<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Alternativ zur bereitgestellten Verzeichnisstruktur kann als Grundlage für die Erstellung das offizielle Beispiel Projekt unter https://github.com/FHIR/sample-ig verwendet werden.
 
-<!-- .slide -->
-# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
-***
-- Die im Verzeichis `input/fsh` abgelegt Shorthand-Datei `patient.fsh` umfasst ein Beispiel für ein Profil auf die Ressource `Patient`. Dieses als fsh-File bezeichnete Profil wird von Sushi bei der Übersetzung in eine FHIR&reg; Ressource in JSON-Repräsentation übersetzt. Die resultierenden JSON FHIR&reg; Ressourcen finden sich im `fsh-generated` Verzeichnis. 
-- Der *IG Publisher* verarbeitet entsprechende Ressourcen im `fsh-generated` Ordner und erstellt daraus in Folge den fertigen Implementation Guide als HTML-Webseite. 
-- Sobald die Erstellung des Implementierungsleitfaden abgeschlossen ist, kann der Leitfaden über die Datei `index.html`
-im Verzeichnis `output` geöffnet werden. Das Beispeil-Profil für die Ressource `Patient` findet sich unter der Addresse `/StructureDefinition-MyPatient.html`.
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
 ### Darstellung/Layout und Narrative Inhalte Anpassen
-Der *IG Publisher* erlaubt weitreichende Anpassungen und Konfigurationen was das Aussehen und die Darstellung des erzeugten Implementierungsleitfadens betrifft. Diese Anpassungen beruhen vielfach auf der Erstellung von *Markdown* oder *HTML-Dateien* in Verbindung mit Jekyll-Templates. Details dazu sind bitte der Dokumentation des *IG Publisher* zu entnehmen.
+*IG Publisher* erlaubt weitreichende Anpassungen und Konfigurationen was das Aussehen und die Darstellung des erzeugten Implementierungsleitfadens betrifft
+
+Anpassungen beruhen vielfach auf der Erstellung von *Markdown* oder *HTML-Dateien* in Verbindung mit _Jekyll_-Templates. Details dazu sind bitte der Dokumentation des *IG Publisher* zu entnehmen
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
 ### Darstellung/Layout und Narrative Inhalte Anpassen
-- Als einfaches Beispiel, starten wir mit der Anpassung der Menüeinträge. Zentraler Einstiegspunkt für alle Konfiguration stellt primär die Datei `sushi-config.yaml` dar. Diese erlaubt es einfache Konfigurationen festzulegen, Sushi parametriert in Fole den *IG Publisher* um diese Konfiguration weiterzugeben. So können wir bspw. ein Link auf ein Inhaltsverzeichnis als Teil des Menüs ergänzen.
+- Zentraler Einstiegspunkt für Konfigurationen stellt Datei `sushi-config.yaml`
+- Sushi parametriert in Folge den *IG Publisher*. So können wir bspw. ein Link auf ein Inhaltsverzeichnis als Teil des Menüs ergänzen
 
 ```yaml
 menu:
@@ -171,24 +146,11 @@ menu:
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
 ### Darstellung/Layout und Narrative Inhalte Anpassen
-- Sämtliche Abstraktionen der Konfigurationsparameter, die von Suhsi für den *IG Publisher* bereitgestellt werden, können auch überschrieben werden. Angenommen, wir möchten größeren Einfluss auf die Menüstruktur unseres Implementierungsleitfadens nehmen. Dazu kommentieren wir in der `sushi-config.yaml` folgende Zeilen durch voranstellen eines `#` aus. 
-
-```yaml
-menu:
-  Home: index.html
-  Table of Contents: toc.html
-  Resources: artifacts.html
-```
-
-<!-- .slide -->
-# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
-***
-### Darstellung/Layout und Narrative Inhalte Anpassen
-- Nun wird im Verzeichnis `inputs` ein Verzeichnis `includes` erstellt, wo eine `menu.xml`-Datei abgelegt wird. 
+Umfangreichere Umgestaltung durch Bereitstellung eigener _Jekyll_-Templates
+- Im Verzeichnis `inputs` ein Verzeichnis `includes` erstellen sowie eine `menu.xml`-Datei erzeugen 
 
 ```xml
 <ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
@@ -205,28 +167,30 @@ menu:
 ```
 <span style="border-radius: 3px;background-color:rgba(17, 173, 221, 1); padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">&#9999;</span> siehe Vorlage unter [templates/ex_01/menu.xml](./templates/ex_01/menu.xml)
 
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Bei der Datei handelt es sich um eine `xhtml`-Datei, d.h. es kann im wesentlichen HTML-Content in das Menü eingefügt werden. Die Erstellung von `xhtml`-Inhalten und dem Menü gestaltet sich derzeit noch etwas komplex, seitens des *IG Publisher* wird in Zukunft eine alternative Möglichkeit bereitgestellt werden.
+<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Bei der Datei handelt es sich um eine `xhtml`-Datei, d.h. es kann im wesentlichen HTML-Content in das Menü eingefügt werden.
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
 ### Darstellung/Layout und Narrative Inhalte Anpassen
-- Die Datei `menu.xml` legt die grundlegende Menüstruktur des gerenderten Implementierungsleitfadens fest. Anpassungen wirken sich bei der Erstellung direkt auf die Struktur und den Inhalt des Menü im gerenderten Implementierungsleitfaden aus.
+Wechseln wir in das Verzeichnis `input/pagecontent`, dort findet sich eine Datei `index.md`, die den Inhalt der Landing-Page des Implementierungsleitfadens darstellt. 
 
-- Als nächstes wechseln wir in das Verzeichnis `input/pagecontent`, dort wird findet sich eine Datei `index.md`, die den Inhalt der Landing-Page des Implementierungsleitfadens darstellt. Der Inhalt der Datei kann unter Einsatz von Markdown beliebig gestaltet werden. Sinngemäß enthält die Landing-Page eine grundlegende Beschreibung des Implementierungsleitfadens. Für das vorliegende Beispiel haben wir uns der Einfachheit-halber von der Beschreibung der e-Medikation unter wiki.hl7.at bedient.
+Der Inhalt der Datei kann unter Einsatz von Markdown beliebig gestaltet werden. 
 
 <span style="border-radius: 3px;background-color:rgba(17, 173, 221, 1); padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">&#9999;</span> siehe Vorlage unter [templates/ex_02/index.md](./templates/ex_02/index.md)
 
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
+## Beispiel e-Medikation
 ***
 ### Darstellung/Layout und Narrative Inhalte Anpassen
-- In Folge soll das bestehende Template durch eine eigenes ersetzt werden. HL7 Austria hat hierfür ein eigenes Template erstellt, das auch im offziellen Template-Repository der HL7-International verfügbar gemacht wurde. 
-- Basis für die Konfiguration des *IG Publisher* stellt die Datei `ig.ini` dar. Sie enthält allgemeine Konfigurationsparameter wie Versionsnummer und Erstellungsjahr. Darüber hinaus wird in der `ig.ini` Datei festgelegt, welches Template als Grundlage für die Erstellung des Leitfadens eingesetzt werden soll. Eine Übersicht aller verfügbaren Parameter findet sich in https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters.
-- Das Template wird über den Parameter `template` definiert. Unter Angabe des folgenden Parameters kann das offizielle HL7 Austria Template verwendet werden.
+In Folge soll das bestehende Template durch eine eigenes ersetzt werden 
+- HL7 Austria hat hierfür ein eigenes Template erstellt, das auch im offziellen Template-Repository der HL7-International verfügbar gemacht wurde
+- Basis für die Konfiguration des *IG Publisher* stellt die Datei `ig.ini` dar
+  Eine Übersicht aller verfügbaren Parameter findet sich in https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
+- Das Template wird über den Parameter `template` festgelegt
 
 ```ini
 [IG]
@@ -235,36 +199,22 @@ template =  hl7.at.fhir.template#0.1.0
 ```
 <span style="border-radius: 3px;background-color:rgba(17, 173, 221, 1); padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">&#9999;</span> siehe Vorlage unter [templates/ex_03/igi.ini](./templates/ex_03/ig.ini)
 
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Sofern `_genonce.[bat|sh]` noch nie ausgeführt wurde, sollte vorher `_updatePublisher.[.bat|.sh]` ausgeführt werden. Dieses lädt die aktuelle Version des *IG Publisher* sowie die benötigten Definition in das Verzeichnis `input-cache`.
+<!-- .slide -->
+# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
+## Beispiel e-Medikation
+***
+### Ergänzen von Profilen - Medication Structure Definition
+- Ein Profil besteht bereits, im Verzeichnis `profiles` befindet sich eine `StructureDefinition` für eine `Patient`-Ressource
+- Vorliegender Implementierungsleitfaden für e-Medikation in Anlehnung an ELGA e-Medikation,
+  -  vorrangig ein Profil für die Ressource `Medication`, sodass Pharamzentralnummer als `Identifier` ergänzt werden kann
 
-- Schließlich kann die Generierung über das Skript `_genonce.[bat|sh]` angestoßen werden. Nach erfolgreicher Ausführung befindet sich im generierten Verzeichnis `output` der gerenderte Leitfaden. Über die Datei `index.html` kann dieser in einem Webbrowser angezeigt werden.
-
-<span style="border-radius: 3px;background-color:green; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">&check;</span> Ein minimaler Implementierungsleitfaden wurde erstellt, die Struktur, narrativen Teile sowie die erstellte Ressource werden im gerenderten Leitfaden dargestellt.  
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Beispiele
 ***
-### Ergänzen von Profilen
-
-- Nachdem der narrative Inhalt erstellt wurde kümmern wir uns um die Erstellung jener Inhalte, die auf Grundlage von definierten Profilen automatisch erstellt werden.
-- Ein Profil besteht bereits, im Verzeichnis `profiles` befindet sich eine `StructureDefinition` für eine `Patient`-Ressource.
-- Da es sich beim vorliegenden Implementierungsleitfaden um ein IG für e-Medikation in Anlehnung an die ELGA e-Medikation handelt, erstellen wir vorrangig ein Profil für die Ressource `Medication`, sodass wir die Pharamzentralnummer als `Identifier` ergänzen können.
-
-<!-- .slide -->
-# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
-***
-### Ergänzen von Profilen
-- Als nächsten Schritt ergänzen wir die Pharmazentralnummer in das Profil für `Medication`. Für die Festlegung, dass eine Medikation in Österreich über eine Pharmazentralnummer verfügen muss, bedienen wir uns eines Profils auf die FHIR&reg; Ressource `Medication`. Nachfolgend dargestellt, findet sich das entsprechende Profil in Form von FHIR&reg; Shorthand Syntax. Konkret wird ein Slice auf das Element `Code.Coding` erstellt. Als Diskriminator (identifizierende Eigenschaft) wird das 
-Element `System` und deren Fixwert `urn:oid:1.2.40.0.34.4.16` festgelegt. Gemäß Slice-Definition ist der Slice offen, die Pharmazentralnummer darf maximal einmal vorkommen.
-
-<!-- .slide -->
-# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
-***
-### Ergänzen von Profilen
-```yaml
+### Ergänzen von Profilen - Medication Structure Definition
+```yaml{highlight=[16-20]}
 Profile: AustrianMedication
 Parent: Medication
 Id: austrian-medication
@@ -291,25 +241,24 @@ Description: "FHIR Base Profile for Medication Data in Austria"
 
 - Das Profil wird unter `input/fsh/austrian-medication.fsh` gespeichert.
 
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Auch wenn die Verwendung von `urn:oid` grundsätzlich in FHIR&reg; nicht verboten ist, wird empfohlen, wo möglich "Menschenlesbare"-URI anzugeben.
-
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Beispiele
 ***
-### Ergänzen von Profilen
+### Ergänzen von Profilen - Profile auf Reference
 - In Folge kann der Implementierungsleitfaden neu erstellt werden. Die bestehende Beispiel FHIR Ressource `Patient` kann gelöscht werden. Das Skript `_genonce.sh|bat` wird erneut angestoßen und wir betrachten das Resultat im Browser
 
-- Anhand eines weiteren Profiles, demonstrieren wir, wie die Beziehung zwischen 2 Ressourcen anhand eines `Reference`-Elements auf die Verwendung eines Profils eingeschränkt werden kann.
+- Anhand eines weiteren Profiles, demonstrieren wir, wie die Beziehung zwischen 2 Ressourcen anhand eines `Reference`-Elements auf die Verwendung eines Profils eingeschränkt werden kann
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Beispiele
 ***
-### Ergänzen von Profilen
-- Das vorbereitete Profil `austrian-medication-request.request` wird in das `profiles`-Verzeichnis kopiert. Da wir in Folge sicherstellen möchten, dass ein `Auistrian-Medication-Request` auf einen `AustrianPatient` verweist, werdenzudem auch die fsh-Dateien für den `Austrian-Patient` in das Verzeichnis `input/fsh` kopiert. Das Verzeichnis `input/fsh` zeigt nun folgende Inhalte.
+### Ergänzen von Profilen - Profile auf Reference
+- ein `Austrian-Medication-Request` soll nur auf einen `AustrianPatient` verweisen können
+- Das vorbereitete Profil `austrian-medication-request.request` wird in das `input/fsh`-Verzeichnis kopiert. 
 
-```bash
+```bash{highlight=[4,7,8]}
 /ig-eMedication-at
     ├── input                  
       ├── fsh
@@ -328,10 +277,10 @@ Description: "FHIR Base Profile for Medication Data in Austria"
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Beispiele
 ***
-### Ergänzen von Profilen
-- Um die Elemente `medication` und `subject` auf die Verwendung unserer definierten Profile einzuschränken, wird nachfolgender Inhalt in das Profil ergänzt.
+### Ergänzen von Profilen - Profile auf Reference
+- Um die Elemente `medication` und `subject` auf die Verwendung unserer definierten Profile einzuschränken, wird nachfolgender Inhalt in das Profil ergänzt
 
-```yaml
+```yaml{highlight=[19,20,21]}
 Alias: $austrian-medication = http://fhir.hl7.at/eMedication-at/StructureDefinition/austrian-medication
 Alias: $austrian-patient = http://fhir.hl7.at/eMedication-at/StructureDefinition/austrian-patient
 
@@ -364,7 +313,9 @@ Description: "FHIR Base Profile for Medication Data in Austria"
 
 - Um für generierte Inhalte auf der Grundlage von Ressourcen und Profilen auch narrative Beschreibungen zu ergänzen, kann je eine *Introduction* sowie eine Gliederungsebene *Notes* zu einer Ressource ergänzt werden. Dies erfolgt durch hinzufügen 2er Dateien, deren Dateiname die betroffene Ressource enthält.
 
-> Für die Ressource `austrian-medication` werden je eine Datei `StructureDefinition-austrian-medication-intro.md` respektive `StructureDefinition-austrian-medication-intro.md` ergänzt.
+- Für die Ressource `austrian-medication` werden je eine Datei 
+  - `StructureDefinition-austrian-medication-intro.md` respektive 
+  - `StructureDefinition-austrian-medication-intro.md` ergänzt
 
 - Da es sich bei diesen Dateien um Markdown-Inhalte handelt, werden diese im Verzeichnis `input/pagecontent` abgelegt. 
 
@@ -378,18 +329,15 @@ Description: "FHIR Base Profile for Medication Data in Austria"
 ***
 ### Ergänzen von Value Sets
 
-- Neben Extensions und Profilen ist es auch möglich Ressourcen für Terminologien in den Implementierungsleitfaden zu integrieren.
-Entsprechende Ressourcen können im Verzeichnis `input/vocabulary` eingefügt werden.
-- Im folgenden Beispiel wollen wir eine neue FHIR&reg; `ValueSet`-Ressource für das Valueset *ELGA-Medikation-Frequenz* erstellen. Als zugrundeliegendes Codesystem wird im Falle des ELGA-Valusets UCUM (unitofmeasures.org) verwendet &rarr; https://termgit.elga.gv.at/ValueSet-elga-medikationfrequenz
-- Wir beginnen damit eine neue Datei `ValueSet-elga-medication-frequency.json` im Verzeichnis `input/vocabulary` zu erstellen. 
-- Gemäß der Definition des Valuesets im Terminologieserver werden entsprechende Codes übernommen. Als Codesystem fungiert unitofmeasure.org - https://www.hl7.org/fhir/valueset-ucum-units.html
+- Neben Extensions und Profilen auch Ressourcen für Terminologien festlegbar
+  - Entsprechende Ressourcen können im Verzeichnis `input/vocabulary` eingefügt werden
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Beispiele
 ***
-### Ergänzen von Value Sets
-```yaml
+### Ergänzen von Value Sets - ELGAMedicationFrequency
+```yaml{highlight=[1,17,18,19]}
 Alias: $unitsofmeasure = http://unitsofmeasure.org
 
 ValueSet: ELGAMedicationFrequency
@@ -418,16 +366,7 @@ Description: "ELGA ValueSet for frequency."
 ## Beispiele
 ***
 ### Ergänzen von _Value Sets_
-- Nach neuerlichem Ausführen des Skripts `_genonce.sh|bat` wird die neue Version des IG in das `output`-Verzeichnis gerendert. Betrachtet man das Resultat, so zeigt sich, dass der *IG Publisher* automatisch eine ValuSet-Expansion vornimmt. D.h. die zu inkludierenden Codes des zugrundeliegende Codesystem werden (sofern auflösbar) in das Valueset integriert.
-
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Wesentliche Grundlage für eine gültige Expansion ist, dass das zugrundeliegende Codesystem auflösbar, als FHIR&reg;-Ressource, sein muss (vgl. FHIR&reg; Terminologieserver tx.fhir.org).
-
-<!-- .slide -->
-# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
-## Beispiele
-***
-### Ergänzen von _Value Sets_
-```yaml{highlight=[6-8]}
+```yaml{highlight=[1,17,18,19,20]}
 Alias: $v3-TimingEvent = http://terminology.hl7.org/CodeSystem/v3-TimingEvent
 
 ValueSet: ELGATimingEventsDrugAdministration
@@ -456,11 +395,8 @@ Description: "ELGA ValueSet for timing of drug administration."
 ## Beispiele
 ***
 ### Ergänzen von _Value Sets_
-- Schließlich muss wieder die Erstellung des IG angestoßen werden, es wird also wiederum das Skript `_genonce.sh|bat` ausgeführt und das Resultat im Browser angezeigt.
-
-- Um auch die Möglichkeit der Angabe eines NULL-Flavor bei ValuSet zu haben, kann auf das entsprechende V3-Codesystem zurückgegriffen werden. Hierzu kann bspw. in einem
-der definierten Valusets folgender möglicher Code ergänzt werden.
-```yaml
+- Um auch die Möglichkeit der Angabe eines NULL-Flavor bei ValuSet zu haben, kann auf das entsprechende V3-Codesystem zurückgegriffen werden.
+```yaml{highlight=[2,11]}
 Alias: $v3-TimingEvent = http://terminology.hl7.org/CodeSystem/v3-TimingEvent
 Alias: $v3-NullFlavor = http://terminology.hl7.org/CodeSystem/v3-NullFlavor
 
@@ -488,15 +424,12 @@ Description: "ELGA ValueSet for timing of drug administration."
 
 <span style="border-radius: 3px;background-color:rgba(17, 173, 221, 1); padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">&#9999;</span> siehe Vorlage unter [templates/ex_11/austrian_patient-example01.fsh](./templates/ex_10/austrian_patient-example01.fsh)
 
-<span style="border-radius: 3px;background-color:green; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">&check;</span> Nachdem die Beispiel-Ressourcen hinzugefügt wurden, können diese im gerenderten Implementierungsleitfaden im Browser angezeigt werden
-
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Beispiele
 ***
 ### Deployment in der HL7 Austria IG Infrastruktur
-Für das Deployment eines FHIR&reg;-Implementierungsleitfadens in der HL7 Austria IG Infrastruktur gilt es sowohl organisatorische, als auch technische Voraussetzungen zu erfüllen. Was die organisatorischen Voraussetzungen betrifft, kann hier das Zuständige technische Kommittee unter tc-fhir@hl7.at 
-weiterhelfen. Wesentliche technische Voraussetzung ist ein im GitHub Account von HL7 Austria verwaltetes GIT-Repository. Ein solches kann über das technische Kommittee beantragt werden. Nachfolgend werden unter der Voraussetzung entsprechenden Repositories die Anpassungen Ergänzungen am vorligen Implementierungsleitfaden demonstriert, um diesen quasi fit für ein Deployment in die HL7 Austria IG Infrastruktur zu machen.
+Für das Deployment eines FHIR&reg;-Implementierungsleitfadens in der HL7 Austria IG Infrastruktur gilt es sowohl organisatorische, als auch technische Voraussetzungen zu erfüllen. Was die organisatorischen Voraussetzungen betrifft, kann hier das Zuständige technische Kommittee unter tc-fhir@hl7.at weiterhelfen. 
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
@@ -505,7 +438,7 @@ weiterhelfen. Wesentliche technische Voraussetzung ist ein im GitHub Account von
 ### Deployment in der HL7 Austria IG Infrastruktur
 - Die HL7 Austria Infrastruktur scant registrierte Implementierungsleitfäden auf das Vorhandensein einer speziellen Konfigurationsdatei. Diese Datei, ist im Verzeichnis '/input/landing-page' als `_index.yml` anzulegen.
 
-```bash
+```bash{highlight=[4]}
 /ig-eMedication-at
     ├── input                  
       ├── landing-page
@@ -517,7 +450,7 @@ weiterhelfen. Wesentliche technische Voraussetzung ist ein im GitHub Account von
 ## Beispiele
 ***
 ### Deployment in der HL7 Austria IG Infrastruktur
-- Die Datei `index.yml` enthält sog. Projektkoordinaten, d.s. unter anderem Details zum Namen und der Version des entsprechenden Implementierungsleitfadens. Konkret gestaltet sich der Aufbau im Falle des vorliegenden Implementierungsleitfadens wie folgt:
+- Die Datei `index.yml` enthält sog. Projektkoordinaten, d.s. unter anderem Details zum Namen und der Version des entsprechenden Implementierungsleitfadens
 
 ```yaml
 - name: HL7 IG Infrastructure Workshop
@@ -532,17 +465,31 @@ weiterhelfen. Wesentliche technische Voraussetzung ist ein im GitHub Account von
 ## Beispiele
 ***
 ### Deployment in der HL7 Austria IG Infrastruktur
-- Nebst dem Namen, der Version und der Beschreibung des Implementierungsleitfaden werden Daten zum letzten Zeitpunkt der Veröffentlichung, der jeweilige Branch (Git-Branch) sowie den Typ des jeweiligen Repositories. Gültige Werte für letzters sind `draft|official|main`. Während `main` und `draft` von allen HL7 Mitgliedern verwendet werden können, ist die Verwendung von `official` nur Implementierungsleitfäden von HL7 Austria vorbehalten.
+- Nebst dem Namen, der Version und der Beschreibung des Implementierungsleitfaden werden Daten zum letzten Zeitpunkt der Veröffentlichung, der jeweilige Branch (Git-Branch) sowie den Typ des jeweiligen Repositories. 
+- Gültige Werte für letzters sind `draft|official|main` 
     - für `main` gilt: Diese werden unter fhir.hl7.at im Bereich *HL7 Austria Member IGs* angezeigt.
     - für `draft` gilt: Dieser werden unter fhir.hl7.at im Bereich *Working Drafts* angezeigt. 
+    - `official` ist für Leitfäden der HL7 Austria vorbehalten
 
 <!-- .slide -->
 # Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
 ## Beispiele
 ***
 ### Deployment in der HL7 Austria IG Infrastruktur
-- Nachdem die Datei ergänzt wurde, kann der Implementierungsleitfaden in das zur Verfügung gestellte Git-Repository gepushed werden. Als Teil der organistorischen Voraussetzungen, wird das entsprechende Repository mit einer GitHub-Action versehen, die beim Atkualisieren einzelner Branches, bspw. durch Commit und anschließendem Push angestoßen wird. 
-- Diese Action prüft, ob alle technischen Voraussetzungen gegeben sind und erstellt ein IG Paket, das in das hl7austria.github.io Repository deployed wird. 
-- Abschließend wird von entsprechendem Repository ein Deployment des Implementierungsleitfadens auf fhir.hl7.at vollzogen. Nach erfolgtem Deployment kann der Implementierungsleitfaden unter fhir.hl7.at angezeigt und ausgewählt werden.
+- <span style="border-radius: 3px;background-color:rgba(17, 173, 221, 1); padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">1</span> Nachdem die Datei ergänzt wurde, kann der Implementierungsleitfaden in das zur Verfügung gestellte Git-Repository gepushed werden. Als Teil der organistorischen Voraussetzungen, wird das entsprechende Repository mit einer GitHub-Action versehen, die beim Atkualisieren einzelner Branches, bspw. durch Commit und anschließendem Push angestoßen wird. 
 
-<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Dieser Ablauf wird für alle Branches im Quell-Repository durchgeführt. Sofern ein bestimmter Branch nicht deployed werden soll, so kann dies durch Entfernen der `_index.yml` Datei für diesen Branch erfolgen
+<!-- .slide -->
+# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
+## Beispiele
+***
+### Deployment in der HL7 Austria IG Infrastruktur
+- <span style="border-radius: 3px;background-color:rgba(17, 173, 221, 1); padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">2</span> Diese Action prüft, ob alle technischen Voraussetzungen gegeben sind und erstellt ein IG Paket, das in das hl7austria.github.io Repository deployed wird. 
+
+<!-- .slide -->
+# Erstellen von HL7&reg; FHIR&reg; *ImplementationGuides*
+## Beispiele
+***
+### Deployment in der HL7 Austria IG Infrastruktur
+- <span style="border-radius: 3px;background-color:rgba(17, 173, 221, 1); padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">3</span> Abschließend wird von entsprechendem Repository ein Deployment des Implementierungsleitfadens auf fhir.hl7.at vollzogen. Nach erfolgtem Deployment kann der Implementierungsleitfaden unter fhir.hl7.at angezeigt und ausgewählt werden.
+
+<span style="border-radius: 3px;background-color:orange; padding:2px 6px 2px 6px;color:#FFF;font-family: Panic Sans, Consolas, monospace;">i</span> Dieser Ablauf wird für alle Branches im Quell-Repository durchgeführt. Sofern ein bestimmter Branch nicht deployed werden soll, so kann dies durch Entfernen der `_index.yml` Datei für diesen Branch erfolgen 
